@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rumble TCG Counter</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .counter { display: flex; justify-content: space-around; padding: 20px; }
+        .player { border: 1px solid #ccc; padding: 10px; border-radius: 5px; }
+        .score { font-size: 24px; }
+    </style>
+</head>
+<body>
+    <h1>Rumble TCG Counter</h1>
+    <div class="counter">
+        <div class="player">
+            <h2>STM</h2>
+            <div class="score">Score: 0</div>
+            <button onclick="increment('stm')">+</button>
+            <button onclick="decrement('stm')">-</button>
+        </div>
+        <div class="player">
+            <h2>Crowd</h2>
+            <div class="score">Score: 0</div>
+            <button onclick="increment('crowd')">+</button>
+            <button onclick="decrement('crowd')">-</button>
+        </div>
+    </div>
+    <script>
+        let scores = {
+            stm: 0,
+            crowd: 0
+        };
+        function increment(player) {
+            if (player === 'stm' && scores.stm < 10) {
+                scores.stm++;
+            } else if (player === 'crowd' && scores.crowd < 10) {
+                scores.crowd++;
+            }
+            updateScores();
+        }
+        function decrement(player) {
+            if (player === 'stm' && scores.stm > 0) {
+                scores.stm--;
+            } else if (player === 'crowd' && scores.crowd > -10) {
+                scores.crowd--;
+            }
+            updateScores();
+        }
+        function updateScores() {
+            document.querySelector('.player:nth-child(1) .score').innerText = 'Score: ' + scores.stm;
+            document.querySelector('.player:nth-child(2) .score').innerText = 'Score: ' + scores.crowd;
+        }
+    </script>
+</body>
+</html>
